@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 #define tab "\t"
+#define delimiter "\----------------------------\"
 
 void FillRand(int arr[], const int n);
 void Print(int arr[], const int n);
@@ -14,8 +15,25 @@ void main()
 	FillRand (arr, n);
 	Print(arr, n);
 
-
-
+	int value;
+	cout << "¬ведите добовл€емое значение: "; cin >> value;
+	//1)—оздаем буфферный массив:
+	int* buffer = new int[n + 1];
+	//2)копируем данные  из исходного массива
+	for (int i = 0; i < n; i++)
+	{
+		buffer[i] = arr[i];
+	}
+	//удал€ем исходный массив:
+	delete[]arr;
+	//4)ѕомен€ем адресс исходного массива адресом нового массива:
+	arr = buffer;
+	//5)только после этого можно добавить элемент в конце массива'arr'
+	arr[n] = value;
+	//6) после добавлени€ количество увеличиваетс€
+	n++;
+	//7)провер€ем результат
+	Print(arr, n);
 	delete[] arr;
 }
 void FillRand(int arr[], const int n)
